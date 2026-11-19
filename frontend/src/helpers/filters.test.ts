@@ -595,4 +595,9 @@ describe('hasFilterQuery', () => {
 		expect(hasFilterQuery('done = false')).toBe(true)
 		expect(hasFilterQuery('hello')).toBe(false)
 	})
+
+	it('does not treat free text containing an operator word as a filter', () => {
+		expect(hasFilterQuery('meeting')).toBe(false)
+		expect(hasFilterQuery('done in 2 days')).toBe(true)
+	})
 })
